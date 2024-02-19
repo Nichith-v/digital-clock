@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+    }
+
+    body {
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /*
+  #clock {
+    height: 20vh;
+    color: #0bed18;
+    font-size: 22vh;
+    font-family: sans-serif;
+    line-height: 20.4vh;
+    display: flex;
+    position: relative;
+    /*background: green;
+    overflow: hidden;
+  }
+  */
+
+    #one {
+      height: 20vh;
+      color: #0bed18;
+      font-size: 22vh;
+      font-family: sans-serif;
+      line-height: 20.4vh;
+      display: flex;
+      position: relative;
+      /*background: green;*/
+      overflow: hidden;
+    }
+
+    #two {
+      height: 20vh;
+      color: #157323;
+      font-size: 5vh;
+      font-family: sans-serif;
+      line-height: 10.4vh;
+      display: flex;
+      position: relative;
+      /*background: green;*/
+      overflow: hidden;
+      margin-left: 20px;
+    }
+  </style>
+  <title>24-Hour Clock</title>
+</head>
+
+<body>
+
+  <div id="clock"></div>
+
+  <script>
+    function updateClock() {
+      var now = new Date();
+      var hours = now.getHours().toString().padStart(2, '0');
+      var minutes = now.getMinutes().toString().padStart(2, '0');
+
+      var date = now.getDate();
+      var day = now.toLocaleDateString('en-US', { weekday: 'short' });
+      var month = now.toLocaleDateString('en-US', { month: 'short' });
+      var year = now.getFullYear();
+
+
+      var timeString = hours + ':' + minutes;
+      var dateString = day + ', ' + date + ' ' + month + ' ' + year;
+
+
+      /*document.getElementById('clock').textContent = timeString;*/
+
+      document.getElementById('clock').innerHTML = `
+            <div id="one">${timeString}</div>
+            <div id="two">${dateString}</div>
+        `;
+    }
+
+    // Update the clock every second
+    setInterval(updateClock, 1000);
+
+    // Initial update
+    updateClock();
+  </script>
+
+</body>
+
+</html>
